@@ -1,0 +1,111 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7086"
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/gateway/auth",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "https",
+      "DownstreamPathTemplate": "/api/auth",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7212
+        }
+      ]
+    },
+
+    {
+      "UpstreamPathTemplate": "/gateway/students",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/students",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7033
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": ["student" ]
+      }
+
+    },
+
+    {
+      "UpstreamPathTemplate": "/gateway/courses",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/courses",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7293
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "course", "student" ]
+      }
+
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/courses/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/courses/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7293
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/courses",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/courses",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7293
+        }
+      ]
+
+
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/teachers",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/teachers",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7205
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": [ "teacher", "student" ]
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/teachers/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamPathTemplate": "/api/teachers/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7205
+        }
+      ]
+
+    }
+  ]
+  
+}
